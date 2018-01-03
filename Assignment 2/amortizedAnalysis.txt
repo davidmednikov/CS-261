@@ -1,0 +1,74 @@
+/*********************************************************************
+** Program Filename: Assignment 2 - amortizedAnalysis.txt
+** Author: David Mednikov
+** Date: 10/4/17
+** Description: Questions and Answers from Assignment 2 Section 2
+*********************************************************************/
+
+1a. How many cost units are spent in the entire process of performing 32 consecutive push operations on an empty array which starts out at capacity 8, assuming that the array will double in capacity each time a new item is added to an already full dynamic array?
+
+8 elements - 8 cost units
+expand capacity to 16 - 16 cost units
+16 elements - 24 cost units
+expand capacity to 32 - 40 cost units
+32 elements - 56 cost units
+ 
+56 cost units are spent in the entire process.
+
+
+1b. As N (ie. the number of pushes) grows large, under this strategy for resizing, what is the big-oh complexity for a push?
+
+The Big-O complexity for a single push is O(1)+
+
+
+
+2a. How many cost units are spent in the entire process of performing 32 consecutive push operations on an empty array which starts out at capacity 8, assuming that the array will grow by a constant 2 spaces each time a new item is added to an already full dynamic array?
+
+8 elements - 8 cost units
+expand capacity to 10 - 16 cost units
+10 elements - 18 cost units
+expand to 12 - 28 cost units
+12 elements - 30 cost units
+expand to 14 - 42 cost units
+14 elements - 44 cost units
+expand to 16 - 58 cost units
+16 elements - 60 cost units
+expand to 18 - 76 cost units
+18 elements - 78 cost units
+expand to 20 - 96 cost units
+20 elements - 98 cost units
+expand to 22 - 118 cost units
+22 elements - 120 cost units
+expand to 24 - 142 cost units
+24 elements - 144 cost units
+expaind to 26 - 168 cost units
+26 elements - 170 cost units
+expand to 28 - 196 cost units
+28 elements - 198 cost units
+expand to 30 - 226 cost units
+30 elements - 228 cost units
+expand to 32 - 258 cost units
+32 elements - 260 cost units
+
+260 cost units are spent in the entire process.
+
+
+2b. As N (ie. the number of pushes) grows large, under this strategy for resizing, what is the big-oh complexity for a push?
+
+The Big-O complexity for a single push is O(n)
+
+
+
+3a. Suppose that a dynamic array stack doubles its capacity when it is full, and shrinks (on Pop only) its capacity by half when the array is half full or less. Can you devise a sequence of N push() and pop() operations which will result in poor performance (O(N^2) total cost)?
+
+Push to the stack until full, duplicate the capacity, then push once more.
+Next, pop the top value so that the array is  at half capacity. The array will shrink by half.
+After shrinking, the array is now full, so if we push once, the capacity is doubled again.
+After doubling the capacity, if we pop once, the array gets shrunk again.
+
+By pushing when the array is at capacity, and then popping when the size of the array is (capacity/2) + 1, we constantly go back and forth between expanding and shrinking the array. Each time the stack is expanded or shrunk, the entire array has to be copied. This would cause very poor performance.
+
+
+3b. How might you adjust the array's shrinking policy to avoid this?
+
+By adjusting the shrinking policy so that the array shrinks when it is 1/4 full.
